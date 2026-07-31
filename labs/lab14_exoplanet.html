@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exoplanet Transit Simulator | Cosmic Physics Lab</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+<header class="site-header">
+  <h1>Exoplanet Transit Simulator</h1>
+  <p class="muted">Measure tiny dips in starlight to infer planet size, orbit, and alignment.</p>
+</header>
+
+<main class="simulation-page-grid">
+  <section class="card">
+    <h2>Core Idea</h2>
+    <p>When a planet crosses in front of its star, it blocks a small fraction of light. The dip depth is approximately (planet radius / star radius)².</p>
+    <ul>
+      <li>Larger planets make deeper dips.</li>
+      <li>Shorter orbital periods repeat more quickly.</li>
+      <li>High inclination can miss the star completely.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>Controls</h2>
+    <label>Planet radius / star radius</label>
+    <input id="radiusRatio" type="range" min="0.03" max="0.22" step="0.01" value="0.10" />
+    <div class="unit-hint" id="radiusReadout"></div>
+
+    <label>Orbital distance</label>
+    <input id="orbitDistance" type="range" min="130" max="220" step="5" value="170" />
+    <div class="unit-hint" id="distanceReadout"></div>
+
+    <label>Inclination</label>
+    <input id="inclination" type="range" min="80" max="90" step="0.2" value="88.5" />
+    <div class="unit-hint" id="inclinationReadout"></div>
+
+    <label>Orbital speed</label>
+    <input id="speed" type="range" min="0.3" max="2.4" step="0.1" value="1" />
+    <div class="unit-hint" id="speedReadout"></div>
+
+    <button class="btn" id="toggleRun">Pause</button>
+    <button class="btn" id="resetBtn">Reset</button>
+  </section>
+
+  <section class="card">
+    <h2>Transit View</h2>
+    <canvas id="transitCanvas" width="520" height="320" class="sim-canvas"></canvas>
+    <p class="muted">The planet only creates a dip when its projected path crosses the stellar disk.</p>
+  </section>
+
+  <section class="card">
+    <h2>Light Curve</h2>
+    <canvas id="curveCanvas" width="620" height="300" class="sim-canvas"></canvas>
+    <p class="muted" id="transitStats"></p>
+  </section>
+
+  <section class="card">
+    <h2>Questions</h2>
+    <ul>
+      <li>How does dip depth change when planet radius doubles?</li>
+      <li>Why can a real planet be invisible to the transit method?</li>
+      <li>What can repeated dips reveal about orbital period?</li>
+    </ul>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <a href="../simulations.html">Back to simulations</a>
+</footer>
+
+<script src="sim-resize.js"></script>
+<script src="lab14_exoplanet.js"></script>
+<script src="sim-shell.js"></script>
+<script src="../progress.js"></script>
+<script src="../accessibility.js"></script>
+<script src="../offline.js"></script>
+</body>
+</html>

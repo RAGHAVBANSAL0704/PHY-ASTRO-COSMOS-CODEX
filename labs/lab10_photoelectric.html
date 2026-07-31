@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Photoelectric Effect Simulator | Cosmic Physics Lab</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+<header class="site-header">
+  <h1>Photoelectric Effect Simulator</h1>
+  <p class="muted">Tune light and work function to reveal photon energy thresholds.</p>
+</header>
+
+
+<main class="simulation-page-grid">
+  <section class="card">
+    <h2>📘 Theory</h2>
+    <p>Einstein’s photoelectric equation:</p>
+    <p><b>K<sub>max</sub> = h f − φ</b></p>
+    <p>The stopping potential is <b>V<sub>s</sub> = K<sub>max</sub>/e</b> (in volts when K is in eV).</p>
+    <div class="instructor-only">
+      <ul>
+        <li>Threshold frequency f₀ = φ/h</li>
+        <li>Intensity controls current, not K<sub>max</sub></li>
+        <li>Stopping potential increases linearly with f</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>⚙️ Controls</h2>
+
+    <label title="Metal work function in eV">Work Function φ</label>
+    <input type="number" id="phi" value="2.2" min="0.1" step="0.1" />
+    <div class="unit-hint">Units: eV</div>
+
+    <label title="Use frequency or wavelength input">Input Mode</label>
+    <select id="inputMode">
+      <option value="freq">Frequency (THz)</option>
+      <option value="lambda">Wavelength (nm)</option>
+    </select>
+
+    <label title="Light frequency">Frequency f</label>
+    <input type="number" id="freq" value="700" min="1" step="1" />
+    <div class="unit-hint">Units: THz</div>
+
+    <label title="Light wavelength">Wavelength λ</label>
+    <input type="number" id="lambda" value="430" min="1" step="1" />
+    <div class="unit-hint">Units: nm</div>
+
+    <label title="Relative intensity (scales current)">Intensity</label>
+    <input type="range" id="intensity" min="1" max="10" value="5" />
+    <div class="unit-hint">Relative scale</div>
+
+    <label title="Voltage range for I–V curve">Voltage Range</label>
+    <input type="number" id="vRange" value="5" min="0.5" step="0.5" />
+    <div class="unit-hint">Units: V (plots from −V to +V)</div>
+
+    <button class="btn" id="runBtn">Update</button>
+    <button class="btn" id="exportBtn">Export CSV</button>
+    <p id="statusMsg" class="status"></p>
+  </section>
+
+  <section class="card">
+    <h2>📊 I–V Curve</h2>
+    <canvas id="ivCanvas" width="500" height="250" class="sim-canvas"></canvas>
+    <p class="muted">Photocurrent vs applied voltage</p>
+  </section>
+
+  <section class="card">
+    <h2>🔎 Results</h2>
+    <p id="resultText" class="muted"></p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <a href="../simulations.html">Back to simulations</a>
+</footer>
+
+<script src="sim-resize.js"></script>
+<script src="lab10_photoelectric.js"></script>
+<script src="sim-shell.js"></script>
+<script src="../progress.js"></script>
+<script src="../accessibility.js"></script>
+<script src="../offline.js"></script>
+</body>
+</html>

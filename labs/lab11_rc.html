@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RC Circuit Response Simulator | Cosmic Physics Lab</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+<header class="site-header">
+  <h1>RC Circuit Response Simulator</h1>
+  <p class="muted">Watch exponential charging and discharging in an electric circuit.</p>
+</header>
+
+
+<main class="simulation-page-grid">
+  <section class="card">
+    <h2>📘 Theory</h2>
+    <p>For an RC circuit, the capacitor voltage evolves as:</p>
+    <p><b>Charging:</b> Vc(t) = V₀ (1 − e^{-t/RC})</p>
+    <p><b>Discharging:</b> Vc(t) = V₀ e^{-t/RC}</p>
+  </section>
+
+  <section class="card">
+    <h2>⚙️ Controls</h2>
+
+    <label title="Resistance">Resistance R</label>
+    <input type="number" id="R" value="1000" min="1" step="10" />
+    <div class="unit-hint">Units: Ω</div>
+
+    <label title="Capacitance">Capacitance C</label>
+    <input type="number" id="C" value="0.001" min="0.000001" step="0.0001" />
+    <div class="unit-hint">Units: F</div>
+
+    <label title="Supply/initial voltage">Voltage V₀</label>
+    <input type="number" id="V0" value="5" min="0.1" step="0.1" />
+    <div class="unit-hint">Units: V</div>
+
+    <label title="Charging or discharging">Mode</label>
+    <select id="mode">
+      <option value="charge">Charging</option>
+      <option value="discharge">Discharging</option>
+    </select>
+
+    <label title="Simulation time step">Time Step Δt</label>
+    <input type="number" id="dt" value="0.01" min="0.0001" step="0.01" />
+    <div class="unit-hint">Units: s</div>
+
+    <label title="Total simulation time">Total Time</label>
+    <input type="number" id="T" value="2" min="0.1" step="0.1" />
+    <div class="unit-hint">Units: s</div>
+
+    <label title="How many physics steps to run per animation frame">Simulation Speed</label>
+    <input type="range" id="speed" min="1" max="20" value="1" />
+    <div class="unit-hint">Steps per frame</div>
+
+    <button class="btn" id="startBtn">Start</button>
+    <button class="btn" id="resetBtn">Reset</button>
+    <button class="btn" id="clearDataBtn">Reset Data</button>
+    <button class="btn" id="exportBtn">Export CSV</button>
+    <p id="statusMsg" class="status"></p>
+  </section>
+
+  <section class="card">
+    <h2>📈 Capacitor Voltage</h2>
+    <canvas id="vCanvas" width="500" height="250" class="sim-canvas"></canvas>
+    <p class="muted">Vc(t)</p>
+  </section>
+
+  <section class="card">
+    <h2>⚡ Current</h2>
+    <canvas id="iCanvas" width="500" height="250" class="sim-canvas"></canvas>
+    <p class="muted">I(t)</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <a href="../simulations.html">Back to simulations</a>
+</footer>
+
+<script src="sim-resize.js"></script>
+<script src="lab11_rc.js"></script>
+<script src="sim-shell.js"></script>
+<script src="../progress.js"></script>
+<script src="../accessibility.js"></script>
+<script src="../offline.js"></script>
+</body>
+</html>

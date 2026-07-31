@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stellar Life Simulator | Cosmic Physics Lab</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+<header class="site-header">
+  <h1>Stellar Life Simulator</h1>
+  <p class="muted">Change stellar mass and compare temperature, luminosity, lifetime, and final fate.</p>
+</header>
+
+<main class="simulation-page-grid">
+  <section class="card">
+    <h2>Core Idea</h2>
+    <p>A star's mass controls its pressure, fusion rate, brightness, lifetime, and final remnant.</p>
+    <p>Massive stars shine fiercely and die quickly. Smaller stars conserve fuel and last much longer.</p>
+  </section>
+
+  <section class="card">
+    <h2>Controls</h2>
+    <label>Stellar mass</label>
+    <input id="mass" type="range" min="0.2" max="35" step="0.1" value="1" />
+    <div class="unit-hint" id="massReadout"></div>
+    <button class="btn" id="resetBtn">Reset to Sun</button>
+  </section>
+
+  <section class="card">
+    <h2>Star Model</h2>
+    <canvas id="starCanvas" width="560" height="360" class="sim-canvas"></canvas>
+    <p class="muted" id="starStats"></p>
+  </section>
+
+  <section class="card">
+    <h2>H-R Diagram</h2>
+    <canvas id="hrCanvas" width="620" height="360" class="sim-canvas"></canvas>
+    <p class="muted">The point shifts along the main sequence as mass changes.</p>
+  </section>
+
+  <section class="card">
+    <h2>Questions</h2>
+    <ul>
+      <li>Why do massive stars have shorter lives even though they contain more fuel?</li>
+      <li>Where would a red dwarf sit compared with the Sun?</li>
+      <li>Which mass range can end as a neutron star or black hole?</li>
+    </ul>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <a href="../simulations.html">Back to simulations</a>
+</footer>
+
+<script src="sim-resize.js"></script>
+<script src="lab17_stellar.js"></script>
+<script src="sim-shell.js"></script>
+<script src="../progress.js"></script>
+<script src="../accessibility.js"></script>
+<script src="../offline.js"></script>
+</body>
+</html>

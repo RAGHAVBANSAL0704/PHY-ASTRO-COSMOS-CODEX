@@ -1,0 +1,232 @@
+/* ===============================
+   Global Styles – Engineering Computational Physics Lab
+   =============================== */
+
+:root {
+  --bg: #0b1020;
+  --card: #141a33;
+  --accent: #4fd1c5;
+  --accent2: #7cfc00;
+  --text: #e6e9ff;
+  --muted: #9aa3ff;
+  --border: #2a3160;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background: radial-gradient(circle at top, #121a3d, var(--bg));
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* ===============================
+   Header & Navigation
+   =============================== */
+
+.site-header {
+  padding: 2rem 1rem 1rem;
+  text-align: center;
+}
+
+.site-header h1 {
+  margin: 0;
+  font-size: 2.2rem;
+}
+
+.site-header p {
+  color: var(--muted);
+  max-width: 800px;
+  margin: 0.6rem auto 0;
+}
+
+.main-nav {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem 0 2rem;
+  flex-wrap: wrap;
+}
+
+.main-nav a {
+  text-decoration: none;
+  color: var(--text);
+  border: 1px solid var(--accent);
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.main-nav a:hover {
+  background: var(--accent);
+  color: #000;
+}
+
+.main-nav a.active {
+  background: var(--accent);
+  color: #000;
+}
+
+/* ===============================
+   Layout Containers
+   =============================== */
+
+.home,
+.lab-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ===============================
+   Cards
+   =============================== */
+
+.card {
+
+  background: linear-gradient(180deg, #18205a, var(--card));
+  border-radius: 1rem;
+  padding: 2rem 2rem;
+  box-shadow: 10px 50px 70px rgba(0, 0, 0, 0.35);
+  width: max-content;
+  max-width: 100%;
+  margin: 0 auto;
+  flex-direction: row;
+  flex-grow: calc(1);
+}
+
+.card h2 {
+  margin-top: 0;
+  font-size: 1.25rem;
+  color: var(--accent);
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.status {
+  margin-top: 0.8rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.status-error {
+  color: #ff6b6b;
+}
+
+/* ===============================
+   Forms & Buttons
+   =============================== */
+
+label {
+  display: block;
+  margin-top: 0.8rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.unit-hint {
+  color: var(--muted);
+  font-size: 0.78rem;
+  margin-top: 0.15rem;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 0.45rem 0.5rem;
+  margin-top: 0.3rem;
+  border-radius: 0.4rem;
+  border: none;
+  background: #0e1430;
+  color: var(--text);
+}
+
+input:focus {
+  outline: 1px solid var(--accent);
+}
+
+select:focus,
+textarea:focus {
+  outline: 1px solid var(--accent);
+}
+
+.btn {
+  margin-top: 1rem;
+  background: var(--accent);
+  color: #000;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn:hover {
+  background: var(--accent2);
+}
+
+/* ===============================
+   Canvas & Plots
+   =============================== */
+
+.sim-canvas {
+  display: block;
+  margin: 0.5rem auto 0.8rem;
+  background: #000;
+  border-radius: 0.6rem;
+  border: 1px solid var(--border);
+}
+
+/* ===============================
+   Tables
+   =============================== */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+}
+
+th, td {
+  border-bottom: 1px solid var(--border);
+  padding: 0.35rem;
+  text-align: center;
+}
+
+th {
+  color: var(--accent);
+}
+
+/* ===============================
+   Footer
+   =============================== */
+
+.site-footer {
+  text-align: center;
+  padding: 1.5rem 1rem 2rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+/* ===============================
+   Instructor Mode
+   =============================== */
+
+.instructor-only {
+  display: none;
+  border-left: 4px solid var(--accent2);
+  padding-left: 0.8rem;
+  margin-top: 0.6rem;
+  background: rgba(124, 252, 0, 0.08);
+}

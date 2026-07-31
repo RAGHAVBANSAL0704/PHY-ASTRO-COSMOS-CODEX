@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lyapunov Chaos Estimator | Cosmic Physics Lab</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+<header class="site-header">
+  <h1>Lyapunov Chaos Estimator</h1>
+  <p class="muted">Measure how fast nearby paths separate in a chaotic system.</p>
+</header>
+
+
+<main class="simulation-page-grid">
+
+  <!-- ================= THEORY ================= -->
+  <section class="card">
+    <h2>📘 Theory</h2>
+    <p>In chaotic systems, nearby trajectories diverge exponentially:</p>
+    <p><b>Δ(t) ≈ Δ₀ e^{λt}</b></p>
+    <p>The constant <b>λ</b> is the <b>Lyapunov exponent</b>.</p>
+    <p>Taking logarithms:</p>
+    <p><b>ln Δ(t) = ln Δ₀ + λ t</b></p>
+
+    <div class="instructor-only">
+      <ul>
+        <li>λ &gt; 0 → chaos</li>
+        <li>λ = 0 → marginal stability</li>
+        <li>λ &lt; 0 → stable fixed point</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= CONTROLS ================= -->
+  <section class="card">
+    <h2>⚙️ Controls</h2>
+
+    <label>Paste separation data (CSV: t,sep per line)</label>
+    <textarea id="dataInput" rows="5" placeholder="0,1e-6&#10;1,1.8e-6"></textarea>
+    <button class="btn" id="loadDataBtn">Load Data</button>
+    <p class="muted">Tip: export CSV from the Three-Body Chaos Simulator and paste here.</p>
+
+    <label title="Start of linear region">Start Time t₁</label>
+    <input type="number" id="t1" value="1" step="0.5" />
+    <div class="unit-hint">Units: time</div>
+
+    <label title="End of linear region">End Time t₂</label>
+    <input type="number" id="t2" value="10" step="0.5" />
+    <div class="unit-hint">Units: time</div>
+
+    <button class="btn" id="computeBtn">Compute λ</button>
+    <button class="btn" id="resetDataBtn">Reset Data</button>
+    <p id="lambdaOut" class="muted"></p>
+    <p id="statusMsg" class="status"></p>
+  </section>
+
+  <!-- ================= PLOT ================= -->
+  <section class="card">
+    <h2>📈 log(Separation) vs Time</h2>
+    <canvas id="lyapCanvas" width="500" height="300" class="sim-canvas"></canvas>
+    <p class="muted">Select linear region manually for slope estimation</p>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <a href="../simulations.html">Back to simulations</a>
+</footer>
+
+<script src="sim-resize.js"></script>
+<script src="lab7_lyapunov.js"></script>
+<script src="sim-shell.js"></script>
+<script src="../progress.js"></script>
+<script src="../accessibility.js"></script>
+<script src="../offline.js"></script>
+</body>
+</html>

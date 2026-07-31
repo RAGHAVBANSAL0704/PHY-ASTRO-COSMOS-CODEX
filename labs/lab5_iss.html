@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ISS Orbit and Ground Track Simulator | Cosmic Physics Lab</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+<header class="site-header">
+  <h1>ISS Orbit and Ground Track Simulator</h1>
+  <p class="muted">Follow a satellite orbit and its moving footprint on Earth.</p>
+</header>
+
+
+<main class="simulation-page-grid">
+
+  <!-- ================= THEORY ================= -->
+  <section class="card">
+    <h2>📘 Theory</h2>
+    <p>The International Space Station (ISS) orbits Earth in Low Earth Orbit (LEO).</p>
+    <p>This simulator uses a <b>Kepler-only approximation</b> to visualize an orbit from TLE elements (not full SGP4).</p>
+
+    <ul>
+      <li>Earth-centered inertial (ECI) frame</li>
+      <li>Keplerian elements</li>
+      <li>Perturbations (J₂, drag – optional)</li>
+    </ul>
+
+    <div class="instructor-only">
+      <p><b>Key Insight:</b></p>
+      <ul>
+        <li>TLEs encode orbital elements, not positions</li>
+        <li>SGP4 propagator converts elements → position</li>
+        <li>Ground track shows Earth’s rotation effect</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= CONTROLS ================= -->
+  <section class="card">
+    <h2>⚙️ Controls</h2>
+
+    <label title="Paste a 2-line or 3-line TLE">TLE Input</label>
+    <textarea id="tleInput" rows="4">
+1 25544U 98067A   24001.50000000  .00016717  00000-0  10270-3 0  9000
+2 25544  51.6416 247.4627 0006703 130.5360 325.0288 15.49747254  1000
+    </textarea>
+
+    <button class="btn" id="loadTLE">Load TLE</button>
+    <button class="btn" id="toggleRun">Start</button>
+    <button class="btn" id="resetBtn">Reset</button>
+    <button class="btn" id="clearDataBtn">Reset Data</button>
+    <label title="How many orbit steps to run per animation frame">Simulation Speed</label>
+    <input type="range" id="speed" min="1" max="20" value="1" />
+    <div class="unit-hint">Steps per frame</div>
+    <p id="statusMsg" class="status"></p>
+  </section>
+
+  <!-- ================= ORBIT ================= -->
+  <section class="card">
+    <h2>🌍 Earth Orbit View</h2>
+    <canvas id="earthCanvas" width="300" height="400" class="sim-canvas"></canvas>
+    <p class="muted">ISS orbit in Earth-centered inertial frame</p>
+  </section>
+
+  <!-- ================= GROUND TRACK ================= -->
+  <section class="card">
+    <h2>🧭 Ground Track</h2>
+    <canvas id="groundCanvas" width="300" height="250" class="sim-canvas"></canvas>
+    <p class="muted">Sub-satellite point over rotating Earth</p>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <a href="../simulations.html">Back to simulations</a>
+</footer>
+
+<script src="sim-resize.js"></script>
+<script src="lab5_iss.js"></script>
+<script src="sim-shell.js"></script>
+<script src="../progress.js"></script>
+<script src="../accessibility.js"></script>
+<script src="../offline.js"></script>
+</body>
+</html>

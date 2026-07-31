@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>N-Body Galaxy Simulator | Cosmic Physics Lab</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+<header class="site-header">
+  <h1>N-Body Galaxy Simulator</h1>
+  <p class="muted">Explore emergent structure from many-body gravitational motion.</p>
+</header>
+
+
+<main class="simulation-page-grid">
+
+  <!-- ================= THEORY ================= -->
+  <section class="card">
+    <h2>📘 Theory</h2>
+    <p>The <b>N-body problem</b> studies the collective gravitational motion of many interacting particles.</p>
+    <ul>
+      <li>Direct summation: O(N²)</li>
+      <li>Tree methods (Barnes–Hut): O(N log N)</li>
+      <li>Used in star clusters, galaxies, cosmology</li>
+    </ul>
+
+    <div class="instructor-only">
+      <ul>
+        <li>Large N reveals emergent structure</li>
+        <li>Relaxation, mixing, and core collapse</li>
+        <li>Numerical methods dominate feasibility</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= CONTROLS ================= -->
+  <section class="card">
+    <h2>⚙️ Controls</h2>
+
+    <label title="How many particles in the simulation">Number of Bodies (N)</label>
+    <input type="number" id="N" value="100" min="10" max="500" step="10" />
+    <div class="unit-hint">Units: count</div>
+
+    <label>Initial Configuration</label>
+    <select id="config">
+      <option value="cluster">Star Cluster (Plummer)</option>
+      <option value="disk">Rotating Disk</option>
+      <option value="random">Random Gas</option>
+    </select>
+
+    <label>Integrator</label>
+    <select id="integrator">
+      <option value="verlet">Velocity Verlet</option>
+      <option value="rk4">Runge–Kutta 4</option>
+    </select>
+
+    <label>
+      <input type="checkbox" id="useBH" checked />
+      Use Barnes–Hut (faster, approximate)
+    </label>
+
+    <label title="Simulation time step">Time Step Δt</label>
+    <input type="number" id="dt" value="0.01" step="0.005" min="0.0001" />
+    <div class="unit-hint">Units: time</div>
+
+    <label title="How many physics steps to run per animation frame">Simulation Speed</label>
+    <input type="range" id="speed" min="1" max="20" value="1" />
+    <div class="unit-hint">Steps per frame</div>
+
+    <button class="btn" id="startBtn">Start</button>
+    <button class="btn" id="resetBtn">Reset</button>
+    <p id="statusMsg" class="status"></p>
+  </section>
+
+  <!-- ================= VISUAL ================= -->
+  <section class="card">
+    <h2>✨ System Evolution</h2>
+    <canvas id="nbodyCanvas" width="500" height="500" class="sim-canvas"></canvas>
+    <p class="muted">Emergent structure from many-body gravity</p>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <a href="../simulations.html">Back to simulations</a>
+</footer>
+
+<script src="../physics/three_body.js"></script>
+<script src="sim-resize.js"></script>
+<script src="lab8_nbody.js"></script>
+<script src="sim-shell.js"></script>
+<script src="../progress.js"></script>
+<script src="../accessibility.js"></script>
+<script src="../offline.js"></script>
+</body>
+</html>

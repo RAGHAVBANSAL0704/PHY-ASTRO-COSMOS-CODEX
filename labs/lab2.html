@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Harmonic Oscillator Simulator | Cosmic Physics Lab</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+<header class="site-header">
+  <h1>Harmonic Oscillator Simulator</h1>
+  <p class="muted">Explore energy conservation, phase space, and stable oscillation.</p>
+</header>
+
+
+<main class="simulation-page-grid">
+
+  <!-- ================= THEORY ================= -->
+  <section class="card">
+    <h2>📘 Theory</h2>
+    <p><b>System:</b> 1D Harmonic Oscillator</p>
+    <p><b>Force law:</b> F = −kx</p>
+    <p><b>Equations:</b></p>
+    <p>dx/dt = v</p>
+    <p>dv/dt = −(k/m)x</p>
+
+    <p><b>Total Energy:</b></p>
+    <p>E = ½mv² + ½kx² (should be conserved)</p>
+
+    <div class="instructor-only">
+      <p><b>Key Insight:</b></p>
+      <ul>
+        <li>Euler is unstable for oscillatory systems</li>
+        <li>Verlet is symplectic → good energy conservation</li>
+        <li>RK4 is accurate short-term but not symplectic</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= CONTROLS ================= -->
+  <section class="card">
+    <h2>⚙️ Controls</h2>
+
+    <label title="Spring constant in N/m">Spring constant k</label>
+    <input type="number" id="k" value="1" min="0.0001" />
+    <div class="unit-hint">Units: N/m</div>
+
+    <label title="Mass in kilograms">Mass m</label>
+    <input type="number" id="m" value="1" min="0.0001" />
+    <div class="unit-hint">Units: kg</div>
+
+    <label title="Position in meters">Initial position x₀</label>
+    <input type="number" id="x0" value="1" />
+    <div class="unit-hint">Units: m</div>
+
+    <label title="Velocity in meters per second">Initial velocity v₀</label>
+    <input type="number" id="v0" value="0" />
+    <div class="unit-hint">Units: m/s</div>
+
+    <label title="Simulation time step in seconds">Time step Δt</label>
+    <input type="number" id="dt" value="0.05" step="0.01" min="0.0001" />
+    <div class="unit-hint">Units: s</div>
+
+    <label>Integrator</label>
+    <select id="integrator">
+      <option value="euler">Euler</option>
+      <option value="verlet">Velocity Verlet</option>
+      <option value="rk4">Runge–Kutta 4</option>
+    </select>
+
+    <label title="How many physics steps to run per animation frame">Simulation Speed</label>
+    <input type="range" id="speed" min="1" max="20" value="1" />
+    <div class="unit-hint">Steps per frame</div>
+
+    <button class="btn" id="startBtn">Start</button>
+    <button class="btn" id="resetBtn">Reset</button>
+    <button class="btn" id="clearDataBtn">Reset Data</button>
+    <p id="statusMsg" class="status"></p>
+  </section>
+
+  <!-- ================= MOTION ================= -->
+  <section class="card">
+    <h2>🖥 Motion</h2>
+    <canvas id="motionCanvas" width="300" height="120" class="sim-canvas"></canvas>
+    <p class="muted">Particle oscillating about equilibrium</p>
+  </section>
+
+  <!-- ================= ENERGY ================= -->
+  <section class="card">
+    <h2>⚡ Energy vs Time</h2>
+    <canvas id="energyCanvas" width="300" height="100" class="sim-canvas"></canvas>
+    <p class="muted">Total energy should remain constant</p>
+  </section>
+
+  <!-- ================= PHASE SPACE ================= -->
+  <section class="card">
+    <h2>📊 Phase Space (x vs v)</h2>
+    <canvas id="phaseCanvas" width="300" height="300" class="sim-canvas"></canvas>
+    <p class="muted">Closed ellipse indicates stable oscillation</p>
+  </section>
+
+  <!-- ================= QUESTIONS ================= -->
+  <section class="card">
+    <h2>📝 Questions</h2>
+    <ul>
+      <li>Which integrator best conserves energy?</li>
+      <li>Why does Euler diverge?</li>
+      <li>Compare long-term behavior of RK4 and Verlet.</li>
+    </ul>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <a href="../simulations.html">Back to simulations</a>
+</footer>
+
+<script src="../physics/oscillator.js"></script>
+<script src="sim-resize.js"></script>
+<script src="lab2.js"></script>
+<script src="sim-shell.js"></script>
+<script src="../progress.js"></script>
+<script src="../accessibility.js"></script>
+<script src="../offline.js"></script>
+</body>
+</html>

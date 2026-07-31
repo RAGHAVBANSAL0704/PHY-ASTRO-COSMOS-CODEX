@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Radioactive Decay Simulator | Cosmic Physics Lab</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+<header class="site-header">
+  <h1>Radioactive Decay Simulator</h1>
+  <p class="muted">Compare half-life curves, activity, and stochastic fluctuations.</p>
+</header>
+
+
+<main class="simulation-page-grid">
+  <section class="card">
+    <h2>📘 Theory</h2>
+    <p>Radioactive decay follows an exponential law:</p>
+    <p><b>N(t) = N₀ e^{-λt}</b>, with half-life T½ = ln(2)/λ</p>
+    <p>Activity is defined as <b>A(t) = λN(t)</b>.</p>
+    <div class="instructor-only">
+      <ul>
+        <li>Stochastic decay shows fluctuations about the mean</li>
+        <li>Shorter half-life → faster activity drop</li>
+        <li>Log plots reveal linear trends</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>⚙️ Controls</h2>
+
+    <label title="Choose a decay mode to load typical half-lives">Decay Mode</label>
+    <select id="mode">
+      <option value="alpha">Alpha (short half-life)</option>
+      <option value="beta">Beta (medium half-life)</option>
+      <option value="gamma">Gamma (long half-life)</option>
+      <option value="custom">Custom</option>
+    </select>
+
+    <label title="Half-life in seconds">Half-life T½</label>
+    <input type="number" id="halfLife" value="10" min="0.0001" />
+    <div class="unit-hint">Units: s</div>
+
+    <label title="Initial number of nuclei">Initial N₀</label>
+    <input type="number" id="N0" value="1000" min="1" step="1" />
+    <div class="unit-hint">Units: count</div>
+
+    <label title="Simulation time step">Time Step Δt</label>
+    <input type="number" id="dt" value="0.1" min="0.001" step="0.01" />
+    <div class="unit-hint">Units: s</div>
+
+    <label title="Total simulation time">Total Time</label>
+    <input type="number" id="T" value="50" min="0.1" step="0.5" />
+    <div class="unit-hint">Units: s</div>
+
+    <label title="Stochastic mode uses Poisson sampling">Mode</label>
+    <select id="simMode">
+      <option value="det">Deterministic</option>
+      <option value="stoch">Stochastic</option>
+    </select>
+
+    <label title="How many physics steps to run per animation frame">Simulation Speed</label>
+    <input type="range" id="speed" min="1" max="20" value="1" />
+    <div class="unit-hint">Steps per frame</div>
+
+    <button class="btn" id="startBtn">Start</button>
+    <button class="btn" id="resetBtn">Reset</button>
+    <button class="btn" id="clearDataBtn">Reset Data</button>
+    <button class="btn" id="exportBtn">Export CSV</button>
+    <p id="statusMsg" class="status"></p>
+  </section>
+
+  <section class="card">
+    <h2>📈 N(t) vs Time</h2>
+    <canvas id="nCanvas" width="500" height="250" class="sim-canvas"></canvas>
+    <p class="muted">Population of undecayed nuclei</p>
+  </section>
+
+  <section class="card">
+    <h2>⚡ Activity A(t)</h2>
+    <canvas id="aCanvas" width="500" height="250" class="sim-canvas"></canvas>
+    <p class="muted">Activity (decays per second)</p>
+  </section>
+
+  <section class="card">
+    <h2>🧮 Residuals (Simulation − Theory)</h2>
+    <canvas id="resCanvas" width="500" height="250" class="sim-canvas"></canvas>
+    <p class="muted">Residuals of N(t) vs exponential model</p>
+  </section>
+
+  <section class="card">
+    <h2>📄 Lab Report</h2>
+    <label>Student Name</label>
+    <input id="studentName" placeholder="Enter name" />
+    <label>Roll / ID</label>
+    <input id="studentId" placeholder="Enter ID" />
+    <label>Observations</label>
+    <textarea id="studentObs" rows="4"></textarea>
+    <button class="btn" id="genReportBtn">Generate Report (.txt)</button>
+    <pre id="reportPreview" style="margin-top:0.8rem;font-size:0.8rem;white-space:pre-wrap;"></pre>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <a href="../simulations.html">Back to simulations</a>
+</footer>
+
+<script src="sim-resize.js"></script>
+<script src="lab9_decay.js"></script>
+<script src="sim-shell.js"></script>
+<script src="../progress.js"></script>
+<script src="../accessibility.js"></script>
+<script src="../offline.js"></script>
+</body>
+</html>

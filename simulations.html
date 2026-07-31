@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Interactive physics and astronomy simulations for Cosmic Physics Lab." />
+  <title>Simulations | Cosmic Physics Lab</title>
+  <link rel="stylesheet" href="site-styles.css" />
+</head>
+<body data-page="simulations">
+  <header class="site-header">
+    <div class="container header-row">
+      <a class="brand" href="index.html">Cosmic Physics Lab</a>
+      <nav id="mainNav" class="main-nav" aria-label="Main navigation"></nav>
+    </div>
+  </header>
+
+  <main class="container page-shell">
+    <section class="page-intro">
+      <p id="verifiedLine" class="verified-line"></p>
+      <h1 id="pageTitle"></h1>
+      <p id="pageIntro" class="page-copy"></p>
+      <div id="statusNote" class="status-note"></div>
+    </section>
+
+    <section id="homeLinks" class="page-links" hidden></section>
+
+    <section class="cosmos-hub" aria-labelledby="cosmosHubTitle">
+      <canvas id="cosmosStarfield" aria-hidden="true"></canvas>
+      <div class="cosmos-hub-copy">
+        <p class="panel-kicker">Cosmos explorer upgrade</p>
+        <h2 id="cosmosHubTitle">Choose a question, launch a universe</h2>
+        <p>
+          Search every physics and astronomy simulator, open mission presets, compare two systems,
+          or jump into the attached full-screen cosmos explorer without disturbing the individual simulations.
+        </p>
+      </div>
+      <div class="cosmos-hub-actions">
+        <a class="hub-action primary" href="cosmos-explorer.html">Open Cosmos Explorer</a>
+        <a class="hub-action" href="compare.html">Open Compare Mode</a>
+      </div>
+    </section>
+
+    <section class="mission-control" aria-labelledby="missionControlTitle">
+      <div class="section-head">
+        <h2 id="missionControlTitle">Mission presets</h2>
+        <p>Fast starts for the most visual physics and astronomy journeys.</p>
+      </div>
+      <div id="missionPresetGrid" class="mission-grid"></div>
+    </section>
+
+    <section class="simulation-finder" aria-labelledby="simulationFinderTitle">
+      <div class="finder-head">
+        <div>
+          <p class="panel-kicker">Individual simulations</p>
+          <h2 id="simulationFinderTitle">Find the exact experiment</h2>
+        </div>
+        <label class="finder-search">
+          <span>Search simulations</span>
+          <input id="simSearch" type="search" placeholder="orbit, wave, decay, circuit..." />
+        </label>
+      </div>
+      <div id="simFilterRow" class="filter-row"></div>
+      <div id="simulationDashboard" class="simulation-dashboard"></div>
+    </section>
+
+    <section class="cosmos-map-panel" aria-labelledby="cosmosMapTitle">
+      <div class="section-head">
+        <h2 id="cosmosMapTitle">Live universe map</h2>
+        <p>Hover the map and watch orbit, wave, atom, and galaxy routes glow together.</p>
+      </div>
+      <canvas id="cosmosMapCanvas" width="1100" height="460" aria-label="Animated map of physics and astronomy simulation routes"></canvas>
+    </section>
+
+    <section id="contentWrap" class="content-wrap">
+      <div id="mainColumn" class="main-column">
+        <div class="section-head">
+          <h2 id="mainHeading"></h2>
+        </div>
+        <div id="cards" class="card-stack"></div>
+      </div>
+
+      <aside id="sideColumn" class="side-column">
+        <div class="section-head">
+          <h2 id="sourceHeading"></h2>
+        </div>
+        <div id="sourceGrid" class="source-stack"></div>
+      </aside>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <p>Interactive computational physics and astronomy launchpad.</p>
+      <p><a href="physics.html">Explore physics concepts</a> · <a href="contact.html">Contact creator</a></p>
+    </div>
+  </footer>
+
+  <script src="site-data.js"></script>
+  <script src="site-app.js"></script>
+  <script src="cosmos-hub.js"></script>
+  <script src="progress.js"></script>
+  <script src="accessibility.js"></script>
+  <script src="offline.js"></script>
+</body>
+</html>

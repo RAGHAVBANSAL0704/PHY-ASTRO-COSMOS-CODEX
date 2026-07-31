@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gravitational Lensing Simulator | Cosmic Physics Lab</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+<header class="site-header">
+  <h1>Gravitational Lensing Simulator</h1>
+  <p class="muted">Bend light with mass and watch rings, arcs, and duplicated images appear.</p>
+</header>
+
+<main class="simulation-page-grid">
+  <section class="card">
+    <h2>Core Idea</h2>
+    <p>Mass curves spacetime, so light from a background source can appear shifted, stretched, or multiplied around a foreground lens.</p>
+    <p>When source, lens, and observer align, the image can become an Einstein ring.</p>
+  </section>
+
+  <section class="card">
+    <h2>Controls</h2>
+    <label>Lens mass</label>
+    <input id="mass" type="range" min="20" max="160" value="82" />
+    <div class="unit-hint" id="massReadout"></div>
+
+    <label>Source offset</label>
+    <input id="offset" type="range" min="0" max="150" value="42" />
+    <div class="unit-hint" id="offsetReadout"></div>
+
+    <label>Source size</label>
+    <input id="sourceSize" type="range" min="8" max="44" value="20" />
+    <div class="unit-hint" id="sizeReadout"></div>
+
+    <button class="btn" id="resetBtn">Reset</button>
+  </section>
+
+  <section class="card">
+    <h2>Lensed Sky</h2>
+    <canvas id="lensCanvas" width="640" height="420" class="sim-canvas"></canvas>
+    <p class="muted">Drag the source offset toward zero to approach an Einstein ring.</p>
+  </section>
+
+  <section class="card">
+    <h2>Measurements</h2>
+    <canvas id="measureCanvas" width="620" height="300" class="sim-canvas"></canvas>
+    <p class="muted" id="lensStats"></p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <a href="../simulations.html">Back to simulations</a>
+</footer>
+
+<script src="sim-resize.js"></script>
+<script src="lab15_lensing.js"></script>
+<script src="sim-shell.js"></script>
+<script src="../progress.js"></script>
+<script src="../accessibility.js"></script>
+<script src="../offline.js"></script>
+</body>
+</html>

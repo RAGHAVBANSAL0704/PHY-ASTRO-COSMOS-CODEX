@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diffusion Random Walk Simulator | Cosmic Physics Lab</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+<header class="site-header">
+  <h1>Diffusion Random Walk Simulator</h1>
+  <p class="muted">Build a probability distribution from many tiny random steps.</p>
+</header>
+
+
+<main class="simulation-page-grid">
+  <section class="card">
+    <h2>📘 Theory</h2>
+    <p>A 1D random walk gives <b>⟨x²⟩ = 2 D t</b>, where D is the diffusion coefficient.</p>
+    <p>For step size <b>ℓ</b> and time step <b>Δt</b>, the diffusion coefficient is <b>D = ℓ²/(2Δt)</b>.</p>
+  </section>
+
+  <section class="card">
+    <h2>⚙️ Controls</h2>
+
+    <label title="Number of walkers">Number of Particles</label>
+    <input type="number" id="N" value="500" min="10" max="5000" step="10" />
+    <div class="unit-hint">Units: count</div>
+
+    <label title="Step size per time step">Step Size ℓ</label>
+    <input type="number" id="step" value="1" min="0.1" step="0.1" />
+    <div class="unit-hint">Units: length</div>
+
+    <label title="Time step">Time Step Δt</label>
+    <input type="number" id="dt" value="0.1" min="0.001" step="0.01" />
+    <div class="unit-hint">Units: time</div>
+
+    <label title="Total number of steps">Total Steps</label>
+    <input type="number" id="totalSteps" value="200" min="10" step="10" />
+    <div class="unit-hint">Units: steps</div>
+
+    <label title="How many physics steps to run per animation frame">Simulation Speed</label>
+    <input type="range" id="speed" min="1" max="20" value="1" />
+    <div class="unit-hint">Steps per frame</div>
+
+    <button class="btn" id="startBtn">Start</button>
+    <button class="btn" id="resetBtn">Reset</button>
+    <button class="btn" id="clearDataBtn">Reset Data</button>
+    <button class="btn" id="exportBtn">Export CSV</button>
+    <p id="statusMsg" class="status"></p>
+  </section>
+
+  <section class="card">
+    <h2>📊 Distribution</h2>
+    <canvas id="histCanvas" width="500" height="250" class="sim-canvas"></canvas>
+    <p class="muted">Histogram of particle positions</p>
+  </section>
+
+  <section class="card">
+    <h2>📈 Mean-Square Displacement</h2>
+    <canvas id="msdCanvas" width="500" height="250" class="sim-canvas"></canvas>
+    <p class="muted">Simulation vs theory (2Dt)</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <a href="../simulations.html">Back to simulations</a>
+</footer>
+
+<script src="sim-resize.js"></script>
+<script src="lab12_diffusion.js"></script>
+<script src="sim-shell.js"></script>
+<script src="../progress.js"></script>
+<script src="../accessibility.js"></script>
+<script src="../offline.js"></script>
+</body>
+</html>

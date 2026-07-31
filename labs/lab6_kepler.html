@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kepler Laws Simulator | Cosmic Physics Lab</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+<header class="site-header">
+  <h1>Kepler Laws Simulator</h1>
+  <p class="muted">Test orbital area sweep and the relation between period and orbit size.</p>
+</header>
+
+
+<main class="simulation-page-grid">
+
+  <!-- ================= THEORY ================= -->
+  <section class="card">
+    <h2>📘 Theory</h2>
+    <p><b>Kepler’s First Law:</b> Planetary orbits are ellipses with the Sun at one focus.</p>
+    <p><b>Kepler’s Second Law:</b> Equal areas are swept in equal times.</p>
+    <p><b>Kepler’s Third Law:</b> T² ∝ a³</p>
+
+    <div class="instructor-only">
+      <ul>
+        <li>All three laws follow from Newtonian gravity</li>
+        <li>Kepler 2nd law ⇔ angular momentum conservation</li>
+        <li>Kepler 3rd law fixes the central force to 1/r²</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= CONTROLS ================= -->
+  <section class="card">
+    <h2>⚙️ Controls</h2>
+
+    <label title="Initial distance from the central mass">Initial Radius r₀</label>
+    <input type="number" id="r0" value="2" min="0.0001" />
+    <div class="unit-hint">Units: length</div>
+
+    <label title="Initial tangential speed">Initial Speed v₀</label>
+    <input type="number" id="v0" value="0.7" />
+    <div class="unit-hint">Units: length / time</div>
+
+    <label title="Simulation time step">Time Step Δt</label>
+    <input type="number" id="dt" value="0.01" step="0.005" min="0.0001" />
+    <div class="unit-hint">Units: time</div>
+
+    <label>Integrator</label>
+    <select id="integrator">
+      <option value="euler">Euler</option>
+      <option value="verlet">Velocity Verlet</option>
+      <option value="rk4">Runge–Kutta 4</option>
+    </select>
+
+    <label title="How many physics steps to run per animation frame">Simulation Speed</label>
+    <input type="range" id="speed" min="1" max="20" value="1" />
+    <div class="unit-hint">Steps per frame</div>
+
+    <button class="btn" id="startBtn">Start</button>
+    <button class="btn" id="resetBtn">Reset</button>
+    <button class="btn" id="clearDataBtn">Reset Data</button>
+    <p id="statusMsg" class="status"></p>
+  </section>
+
+  <!-- ================= ORBIT ================= -->
+  <section class="card">
+    <h2>🛰 Orbit</h2>
+    <canvas id="orbitCanvas" width="400" height="400" class="sim-canvas"></canvas>
+    <p class="muted">Elliptical orbit with central body at focus</p>
+  </section>
+
+  <!-- ================= AREA LAW ================= -->
+  <section class="card">
+    <h2>📐 Kepler’s 2nd Law – Area Sweep</h2>
+    <canvas id="areaCanvas" width="500" height="250" class="sim-canvas"></canvas>
+    <p class="muted">Equal areas swept in equal time intervals</p>
+  </section>
+
+  <!-- ================= THIRD LAW ================= -->
+  <section class="card">
+    <h2>📊 Kepler’s 3rd Law</h2>
+    <canvas id="thirdLawCanvas" width="500" height="250" class="sim-canvas"></canvas>
+    <p class="muted">T² vs a³ (linear relationship)</p>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <a href="../simulations.html">Back to simulations</a>
+</footer>
+
+<script src="../physics/two_body.js"></script>
+<script src="sim-resize.js"></script>
+<script src="lab6_kepler.js"></script>
+<script src="sim-shell.js"></script>
+<script src="../progress.js"></script>
+<script src="../accessibility.js"></script>
+<script src="../offline.js"></script>
+</body>
+</html>

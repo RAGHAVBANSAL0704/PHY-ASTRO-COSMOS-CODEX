@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1D Motion Simulator | Cosmic Physics Lab</title>
+  <link rel="stylesheet" href="lab1.css" />
+</head>
+<body>
+<header class="site-header">
+  <h1>1D Motion Simulator</h1>
+  <p class="muted">Compare numerical and analytical motion under constant acceleration.</p>
+</header>
+
+
+<main class="simulation-page-grid">
+    <!-- ================= LAB REPORT ================= -->
+<section class="card">
+  <h2>📄 Lab Report Generator</h2>
+
+  <label>Student Name</label>
+  <input id="studentName" placeholder="Enter name" />
+
+  <label>Roll / ID</label>
+  <input id="studentId" placeholder="Enter ID" />
+
+  <label>Observations</label>
+  <textarea id="studentObs" rows="4" style="width:100%;margin-top:0.4rem;"></textarea>
+
+  <button class="btn" id="genReportBtn">Generate Report (.txt)</button>
+  <pre id="reportPreview"
+       style="margin-top:0.8rem;font-size:0.8rem;white-space:pre-wrap;"></pre>
+</section>
+
+
+<!-- ================= INSTRUCTOR MODE ================= -->
+<section class="card">
+  <h2>🎓 Instructor Mode</h2>
+
+  <label>
+    <input type="checkbox" id="instructorToggle" />
+    Enable Instructor Mode
+  </label>
+
+  <p class="muted">
+    When enabled, additional explanations and guidance will be shown.
+  </p>
+</section>
+
+
+<div class="instructor-only">
+  <p><b>Expected Observation:</b></p>
+  <ul>
+    <li>Error increases linearly with time</li>
+    <li>Larger Δt causes faster divergence</li>
+  </ul>
+</div>
+
+
+  <!-- ================= THEORY ================= -->
+   
+  <section class="card">
+    <h2>📘 Theory</h2>
+    <p><b>Equations of Motion (1D):</b></p>
+    <p>dx/dt = v</p>
+    <p>dv/dt = a (constant)</p>
+
+    <p><b>Analytical Solution:</b></p>
+    <p>v(t) = v₀ + at</p>
+    <p>x(t) = x₀ + v₀t + ½at²</p>
+
+    <p class="muted">
+      In this experiment, we compare the exact analytical solution with the numerical
+      solution obtained using the Euler forward method.
+    </p>
+  </section>
+
+  <!-- ================= CONTROLS ================= -->
+  <section class="card">
+    <h2>⚙️ Controls</h2>
+
+    <label title="Position in meters">Initial Position x₀</label>
+    <input type="number" id="x0" value="0" />
+    <div class="unit-hint">Units: m</div>
+
+    <label title="Velocity in meters per second">Initial Velocity v₀</label>
+    <input type="number" id="v0" value="5" />
+    <div class="unit-hint">Units: m/s</div>
+
+    <label title="Acceleration in meters per second squared">Acceleration a</label>
+    <input type="number" id="acc" value="1" />
+    <div class="unit-hint">Units: m/s²</div>
+
+    <label title="Simulation time step in seconds">Time Step Δt</label>
+    <input type="number" id="dt" value="0.1" step="0.01" min="0.001" />
+    <div class="unit-hint">Units: s</div>
+
+    <label title="How many physics steps to run per animation frame">Simulation Speed</label>
+    <input type="range" id="speed" min="1" max="20" value="1" />
+    <div class="unit-hint">Steps per frame</div>
+
+    <button class="btn" id="startBtn">Start</button>
+    <button class="btn" id="resetBtn">Reset</button>
+    <button class="btn" id="clearDataBtn">Reset Data</button>
+    <p id="statusMsg" class="status"></p>
+  </section>
+
+  <!-- ================= ANIMATION ================= -->
+  <section class="card">
+    <h2>🖥 1D Motion Animation</h2>
+    <canvas id="motionCanvas" width="500" height="100" class="sim-canvas"></canvas>
+    <p class="muted">Blue: Numerical (Euler) &nbsp; | &nbsp; Green: Analytical</p>
+  </section>
+<!-- ================= ERROR ANALYSIS ================= -->
+<section class="card">
+  <h2>📉 Error Analysis</h2>
+
+  <canvas id="errorTimeCanvas" width="500" height="250"
+          class="sim-canvas"></canvas>
+  <p class="muted">Absolute error |x_numeric − x_exact| vs time</p>
+
+  <label>Δt sweep (max Δt)</label>
+  <input type="range" id="dtSweep" min="0.02" max="0.5"
+         step="0.02" value="0.1" />
+
+  <button class="btn" id="runDtSweep">Run Δt Sweep</button>
+
+  <canvas id="errorDtCanvas" width="500" height="250"
+          class="sim-canvas"></canvas>
+  <p class="muted">Final-time error vs Δt (Euler method)</p>
+
+  <div class="instructor-only">
+    <p><b>Expected Trend:</b></p>
+    <ul>
+      <li>Error grows roughly linearly with time</li>
+      <li>Error ∝ Δt for Euler method</li>
+    </ul>
+  </div>
+</section>
+
+  <!-- ================= GRAPH ================= -->
+  <section class="card">
+    <h2>📈 Position vs Time</h2>
+    <canvas id="graphCanvas" width="500" height="250" class="sim-canvas"></canvas>
+    <p class="muted">Plots x(t) for numerical and analytical solutions</p>
+  </section>
+
+  <!-- ================= DATA TABLE ================= -->
+  <section class="card">
+    <h2>📊 Data Table</h2>
+    <table id="dataTable">
+      <thead>
+        <tr>
+          <th>t</th>
+          <th>x (numeric)</th>
+          <th>x (exact)</th>
+          <th>Error</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <button class="btn" id="exportBtn">Export CSV</button>
+  </section>
+
+  <!-- ================= PROCEDURE ================= -->
+  <section class="card">
+    <h2>🧪 Procedure</h2>
+    <ol>
+      <li>Set initial conditions x₀, v₀ and acceleration a.</li>
+      <li>Choose a time step Δt.</li>
+      <li>Click <b>Start</b> to run the simulation.</li>
+      <li>Observe divergence between numerical and analytical solutions.</li>
+      <li>Export data and analyze error vs time.</li>
+    </ol>
+  </section>
+
+  <!-- ================= QUESTIONS ================= -->
+  <section class="card">
+    <h2>📝 Questions</h2>
+    <ul>
+      <li>How does error change with time?</li>
+      <li>What happens when Δt is increased?</li>
+      <li>Why does Euler method accumulate error?</li>
+    </ul>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <a href="../simulations.html">Back to simulations</a>
+</footer>
+
+<!-- Scripts -->
+<script src="../physics/motion_1d.js"></script>
+<script src="sim-resize.js"></script>
+<script src="lab1.js"></script>
+<script src="sim-shell.js"></script>
+<script src="../progress.js"></script>
+<script src="../accessibility.js"></script>
+<script src="../offline.js"></script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Two-Body Orbit Simulator | Cosmic Physics Lab</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+<header class="site-header">
+  <h1>Two-Body Orbit Simulator</h1>
+  <p class="muted">Watch gravity bend motion into bound and open orbital paths.</p>
+</header>
+
+
+<main class="simulation-page-grid">
+
+  <!-- ================= THEORY ================= -->
+  <section class="card">
+    <h2>📘 Theory</h2>
+    <p><b>Newton's Law of Gravitation:</b></p>
+    <p>F = -GMm / r²</p>
+
+    <p><b>Equations of Motion (relative coordinate):</b></p>
+    <p>d²r/dt² = -GM r / r³</p>
+
+    <p><b>Conserved Quantities:</b></p>
+    <ul>
+      <li>Total Energy: E = ½v² -GM/r</li>
+      <li>Angular Momentum: L = r * v</li>
+    </ul>
+
+    <div class="instructor-only">
+      <p><b>Key Insight:</b></p>
+      <ul>
+        <li>Bound orbits occur when E &lt; 0</li>
+        <li>Angular momentum conservation fixes orbital plane</li>
+        <li>Symplectic integrators preserve orbits long-term</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= CONTROLS ================= -->
+  <section class="card">
+    <h2>⚙️ Initial Conditions</h2>
+
+    <label title="Standard gravitational parameter (GM)">Gravitational parameter GM</label>
+    <input type="number" id="GM" value="1" min="0.0001" />
+    <div class="unit-hint">Units: length³ / time²</div>
+
+    <label title="Initial distance from central mass">Initial radius r₀</label>
+    <input type="number" id="r0" value="2" min="0.0001" />
+    <div class="unit-hint">Units: length</div>
+
+    <label title="Initial tangential speed">Initial speed v₀</label>
+    <input type="number" id="v0" value="0.7" />
+    <div class="unit-hint">Units: length / time</div>
+
+    <label title="Simulation time step">Time step Δt</label>
+    <input type="number" id="dt" value="0.01" step="0.005" min="0.0001" />
+    <div class="unit-hint">Units: time</div>
+
+    <label>Integrator</label>
+    <select id="integrator">
+      <option value="euler">Euler</option>
+      <option value="verlet">Velocity Verlet</option>
+      <option value="rk4">Runge-Kutta 4</option>
+    </select>
+
+    <label title="How many physics steps to run per animation frame">Simulation Speed</label>
+    <input type="range" id="speed" min="1" max="20" value="1" />
+    <div class="unit-hint">Steps per frame</div>
+
+    <button class="btn" id="startBtn">Start</button>
+    <button class="btn" id="resetBtn">Reset</button>
+    <button class="btn" id="clearDataBtn">Reset Data</button>
+    <p id="statusMsg" class="status"></p>
+  </section>
+
+  <!-- ================= ORBIT ================= -->
+  <section class="card">
+    <h2>🪐 Orbit Visualization</h2>
+    <canvas id="orbitCanvas" width="400" height="400" class="sim-canvas"></canvas>
+    <p class="muted">Central mass at origin, particle orbiting under gravity</p>
+  </section>
+
+  <!-- ================= ENERGY ================= -->
+  <section class="card">
+    <h2>⚡ Energy vs Time</h2>
+    <canvas id="energyCanvas" width="500" height="250" class="sim-canvas"></canvas>
+    <p class="muted">KE, PE, and Total Energy</p>
+  </section>
+
+  <!-- ================= ANGULAR MOMENTUM ================= -->
+  <section class="card">
+    <h2>🧭 Angular Momentum</h2>
+    <canvas id="angularCanvas" width="500" height="250" class="sim-canvas"></canvas>
+    <p class="muted">Magnitude of angular momentum vs time</p>
+  </section>
+
+  <!-- ================= QUESTIONS ================= -->
+  <section class="card">
+    <h2>📝 Questions</h2>
+    <ul>
+      <li>Which integrator best preserves orbital shape?</li>
+      <li>How does Δt affect precession?</li>
+      <li>Verify Kepler's 2nd law numerically.</li>
+    </ul>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <a href="../simulations.html">Back to simulations</a>
+</footer>
+
+<script src="../physics/two_body.js"></script>
+<script src="sim-resize.js"></script>
+<script src="lab3.js"></script>
+<script src="sim-shell.js"></script>
+<script src="../progress.js"></script>
+<script src="../accessibility.js"></script>
+<script src="../offline.js"></script>
+</body>
+</html>

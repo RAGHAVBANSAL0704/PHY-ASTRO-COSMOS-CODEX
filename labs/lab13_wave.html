@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1D Wave Equation Simulator | Cosmic Physics Lab</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+<header class="site-header">
+  <h1>1D Wave Equation Simulator</h1>
+  <p class="muted">Animate a vibrating string and track wave energy over time.</p>
+</header>
+
+
+<main class="simulation-page-grid">
+  <section class="card">
+    <h2>📘 Theory</h2>
+    <p>The 1D wave equation is:</p>
+    <p><b>∂²u/∂t² = c² ∂²u/∂x²</b></p>
+    <p>The explicit finite-difference scheme is stable when <b>c Δt/Δx ≤ 1</b>.</p>
+  </section>
+
+  <section class="card">
+    <h2>⚙️ Controls</h2>
+
+    <label title="Number of spatial points">Grid Points</label>
+    <input type="number" id="N" value="120" min="50" max="400" step="10" />
+    <div class="unit-hint">Units: count</div>
+
+    <label title="String length">Length L</label>
+    <input type="number" id="L" value="1" min="0.1" step="0.1" />
+    <div class="unit-hint">Units: m</div>
+
+    <label title="Wave speed">Wave Speed c</label>
+    <input type="number" id="c" value="1" min="0.1" step="0.1" />
+    <div class="unit-hint">Units: m/s</div>
+
+    <label title="Time step">Time Step Δt</label>
+    <input type="number" id="dt" value="0.005" min="0.0001" step="0.001" />
+    <div class="unit-hint">Units: s</div>
+
+    <label title="Damping factor">Damping</label>
+    <input type="number" id="damping" value="0.002" min="0" step="0.001" />
+    <div class="unit-hint">Dimensionless</div>
+
+    <label title="Initial shape">Initial Condition</label>
+    <select id="initShape">
+      <option value="pluck">Pluck (triangle)</option>
+      <option value="gaussian">Gaussian pulse</option>
+    </select>
+
+    <label title="How many physics steps to run per animation frame">Simulation Speed</label>
+    <input type="range" id="speed" min="1" max="20" value="1" />
+    <div class="unit-hint">Steps per frame</div>
+
+    <button class="btn" id="startBtn">Start</button>
+    <button class="btn" id="resetBtn">Reset</button>
+    <button class="btn" id="clearDataBtn">Reset Data</button>
+    <p id="statusMsg" class="status"></p>
+  </section>
+
+  <section class="card">
+    <h2>🧵 String Displacement</h2>
+    <canvas id="waveCanvas" width="600" height="250" class="sim-canvas"></canvas>
+    <p class="muted">Fixed-end boundary conditions</p>
+  </section>
+
+  <section class="card">
+    <h2>⚡ Energy</h2>
+    <canvas id="energyCanvas" width="600" height="250" class="sim-canvas"></canvas>
+    <p class="muted">Total energy vs time</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <a href="../simulations.html">Back to simulations</a>
+</footer>
+
+<script src="sim-resize.js"></script>
+<script src="lab13_wave.js"></script>
+<script src="sim-shell.js"></script>
+<script src="../progress.js"></script>
+<script src="../accessibility.js"></script>
+<script src="../offline.js"></script>
+</body>
+</html>
